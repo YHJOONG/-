@@ -65,7 +65,7 @@ export const actions = {
 
 ```js
 // 컴포넌트에서 콜백 실행 방식
-dispatch(('setAccount', account).then() => {});
+dispatch(('setAccount', account).then() => {})
 
 // action 정의 - store.js
 export const actions = {
