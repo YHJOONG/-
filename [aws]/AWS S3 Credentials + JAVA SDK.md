@@ -23,26 +23,25 @@ Java를 사용하여 AWS S3와 상호작용하기 위해 AWS SDK for Java를 사
 
 
 ## 3. AWS 자격 증명에 대한 순서
-- DefaultAWSCredentialsProviderChain
-    - 아래와 같은 순서대로 자격 증명 찾음
+- DefaultAWSCredentialsProviderChain : 아래와 같은 순서대로 자격 증명 찾음
 
-- EnvironmentVariableCredentialsProvider
-    - 환경변수 AWS_ACCESS_KEY_ID 과 AWS_SECRET_ACCESS_KEY 를 사용하여 로드
+    - EnvironmentVariableCredentialsProvider
+        - 환경변수 AWS_ACCESS_KEY_ID 과 AWS_SECRET_ACCESS_KEY 를 사용하여 로드
 
-- SystemPropertiesCredentialsProvider
-    - Java 시스템 속성 aws.accessKeyId 과 aws.secretKey 를 사용하여 로드
+    - SystemPropertiesCredentialsProvider
+        - Java 시스템 속성 aws.accessKeyId 과 aws.secretKey 를 사용하여 로드
 
-- 환경 또는 컨테이너의 웹 자격 증명 토큰 자격 증명
+    - 환경 또는 컨테이너의 웹 자격 증명 토큰 자격 증명
 
-- ProfileCredentialsProvider
-    - 일반적으로 위치 ~/.aws/credentials (플랫폼마다 다를 수 있음) 에 있는 자격증명을 로드
+    - ProfileCredentialsProvider
+        - 일반적으로 위치 ~/.aws/credentials (플랫폼마다 다를 수 있음) 에 있는 자격증명을 로드
 
-- ContainerCredentialsProvider
-    - 환경 변수인 경우 Amazon ECS에서 AWS_CONTAINER_CREDENTIALS_RELATIVE_URI 에 있는 자격증명 로드
+    - ContainerCredentialsProvider
+        - 환경 변수인 경우 Amazon ECS에서 AWS_CONTAINER_CREDENTIALS_RELATIVE_URI 에 있는 자격증명 로드
 
-- InstanceProfileCredentialsProvider
-    - EC2 인스턴스에서 사용되며 Amazon EC2 메타 데이터 서비스를 사용하여 로드 인스턴스 메타데이터 관련 참고
-    - 단, k인스턴스 프로파일 자격 증명은 AWS_CONTAINER_CREDENTIALS_RELATIVE_URI가 설정되지 않은 경우에만 사용된다.
+    - InstanceProfileCredentialsProvider
+        - EC2 인스턴스에서 사용되며 Amazon EC2 메타 데이터 서비스를 사용하여 로드 인스턴스 메타데이터 관련 참고
+        - 단, k인스턴스 프로파일 자격 증명은 AWS_CONTAINER_CREDENTIALS_RELATIVE_URI가 설정되지 않은 경우에만 사용된다.
 
 
 ## 4. 테스트 코드
