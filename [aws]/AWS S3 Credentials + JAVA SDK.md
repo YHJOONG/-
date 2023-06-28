@@ -49,86 +49,99 @@ Java를 사용하여 AWS S3와 상호작용하기 위해 AWS SDK for Java를 사
 - 
 ```java
 @GetMapping("/buckets-v1/DefaultAWSCredentialsProviderChain")
-	public ResponseEntity<List<com.amazonaws.services.s3.model.Bucket>> getBucketListV1_0() {
+public ResponseEntity<List<com.amazonaws.services.s3.model.Bucket>> getBucketListV1_0() {
 
-		AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
-				.withCredentials(DefaultAWSCredentialsProviderChain.getInstance())
-				.withRegion(Regions.AP_NORTHEAST_2)
-				.build();
+    AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
+            .withCredentials(DefaultAWSCredentialsProviderChain.getInstance())
+            .withRegion(Regions.AP_NORTHEAST_2)
+            .build();
 
-		List<com.amazonaws.services.s3.model.Bucket> listBuckets =  s3Client.listBuckets();
+    List<com.amazonaws.services.s3.model.Bucket> listBuckets =  s3Client.listBuckets();
 
-		return ResponseEntity.ok(listBuckets);
-	}
+    return ResponseEntity.ok(listBuckets);
+}
 
+// 환경 변수 자격 증명 확인
+@GetMapping("/buckets-v1/EnvironmentVariableCredentialsProvider")
+public ResponseEntity<List<com.amazonaws.services.s3.model.Bucket>> getBucketListV1_1() {
+    AWSCredentials credentials = new BasicAWSCredentials(config.getAccessKey(), config.getSecretKey());
 
+    AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
+            .withRegion(Regions.AP_NORTHEAST_2)
+            .withCredentials(new AWSStaticCredentialsProvider(credentials))
+            .build();
 
-	// 환경 변수 자격 증명 확인
-	@GetMapping("/buckets-v1/EnvironmentVariableCredentialsProvider")
-	public ResponseEntity<List<com.amazonaws.services.s3.model.Bucket>> getBucketListV1_1() {
+    List<com.amazonaws.services.s3.model.Bucket> listBuckets =  s3Client.listBuckets();
 
-	AWSCredentials credentials = new BasicAWSCredentials(config.getAccessKey(), config.getSecretKey());
+    return ResponseEntity.ok(listBuckets);
+}
 
-		AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
-				.withRegion(Regions.AP_NORTHEAST_2)
-                .withCredentials(new AWSStaticCredentialsProvider(credentials))
-				.build();
+// 기본 위치 자격 증명 확인
+@GetMapping("/buckets-v1/ProfileCredentialsProvider")
+public ResponseEntity<List<com.amazonaws.services.s3.model.Bucket>> getBucketListV1_3() {
+    AWSCredentialsProvider credentialsProvider = new ProfileCredentialsProvider();
+    AWSCredentials credentials = credentialsProvider.getCredentials();
 
-		List<com.amazonaws.services.s3.model.Bucket> listBuckets =  s3Client.listBuckets();
+    AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
+            .withRegion(Regions.AP_NORTHEAST_2)
+            .withCredentials(credentialsProvider)
+            .build();
 
-		return ResponseEntity.ok(listBuckets);
-	}
+    List<com.amazonaws.services.s3.model.Bucket> listBuckets =  s3Client.listBuckets();
 
+    return ResponseEntity.ok(listBuckets);
+}
 
-	// 기본 위치 자격 증명 확인
-	@GetMapping("/buckets-v1/ProfileCredentialsProvider")
-	public ResponseEntity<List<com.amazonaws.services.s3.model.Bucket>> getBucketListV1_3() {
-		AWSCredentialsProvider credentialsProvider = new ProfileCredentialsProvider();
-		AWSCredentials credentials = credentialsProvider.getCredentials();
+// AWS ECS 컨테이너 자격 증명 확인
+@GetMapping("/buckets-v1/ContainerCredentialsProvider")
+public ResponseEntity<List<com.amazonaws.services.s3.model.Bucket>> getBucketListV1_4() {
 
-		AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
-				.withRegion(Regions.AP_NORTHEAST_2)
-				.withCredentials(credentialsProvider)
-				.build();
+    AWSCredentialsProvider credentialsProvider = new EC2ContainerCredentialsProviderWrapper();
+    AWSCredentials credentials = credentialsProvider.getCredentials();
 
-		List<com.amazonaws.services.s3.model.Bucket> listBuckets =  s3Client.listBuckets();
+    AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
+            .withRegion(Regions.AP_NORTHEAST_2)
+            .withCredentials(credentialsProvider)
+            .build();
 
-		return ResponseEntity.ok(listBuckets);
-	}
+    List<com.amazonaws.services.s3.model.Bucket> listBuckets =  s3Client.listBuckets();
 
-	// AWS ECS 컨테이너 자격 증명 확인
-	@GetMapping("/buckets-v1/ContainerCredentialsProvider")
-	public ResponseEntity<List<com.amazonaws.services.s3.model.Bucket>> getBucketListV1_4() {
+    return ResponseEntity.ok(listBuckets);
+}
 
-		AWSCredentialsProvider credentialsProvider = new EC2ContainerCredentialsProviderWrapper();
-		AWSCredentials credentials = credentialsProvider.getCredentials();
+// 인스턴스 프로필 자격 증명 확인 (v1)
+@GetMapping("/buckets-v1/InstanceProfileCredentialsProvider")
+public ResponseEntity<List<com.amazonaws.services.s3.model.Bucket>> getBucketListV1_5() {
 
-		AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
-				.withRegion(Regions.AP_NORTHEAST_2)
-				.withCredentials(credentialsProvider)
-				.build();
+    AWSCredentialsProvider credentialsProvider = new InstanceProfileCredentialsProvider();
+    AWSCredentials credentials = credentialsProvider.getCredentials();
 
-		List<com.amazonaws.services.s3.model.Bucket> listBuckets =  s3Client.listBuckets();
+    AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
+            .withRegion(Regions.AP_NORTHEAST_2)
+            .withCredentials(credentialsProvider)
+            .build();
 
-		return ResponseEntity.ok(listBuckets);
-	}
+    List<com.amazonaws.services.s3.model.Bucket> listBuckets =  s3Client.listBuckets();
 
-	// 인스턴스 프로필 자격 증명 확인
-	@GetMapping("/buckets-v1/InstanceProfileCredentialsProvider")
-	public ResponseEntity<List<com.amazonaws.services.s3.model.Bucket>> getBucketListV1_5() {
+    return ResponseEntity.ok(listBuckets);
+}
 
-		AWSCredentialsProvider credentialsProvider = new InstanceProfileCredentialsProvider();
-		AWSCredentials credentials = credentialsProvider.getCredentials();
+// 인스턴스 프로필 자격 증명 확인 (v2)
+@GetMapping("/buckets-v2/InstanceProfileCredentialsProvider")
+public ResponseEntity<List<software.amazon.awssdk.services.s3.model.Bucket>> getBucketListV2_5() {
 
-		AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
-				.withRegion(Regions.AP_NORTHEAST_2)
-				.withCredentials(credentialsProvider)
-				.build();
+    AwsCredentialsProvider credentialsProvider = software.amazon.awssdk.auth.credentials.InstanceProfileCredentialsProvider.builder()
+            .build();
 
-		List<com.amazonaws.services.s3.model.Bucket> listBuckets =  s3Client.listBuckets();
+    S3Client s3Client = S3Client.builder()
+            .region(Region.AP_NORTHEAST_2)
+            .credentialsProvider(credentialsProvider)
+            .build();
 
-		return ResponseEntity.ok(listBuckets);
-	}
+    List<software.amazon.awssdk.services.s3.model.Bucket> listBuckets = s3Client.listBuckets().buckets();
+
+    return ResponseEntity.ok(listBuckets);
+}
 
 ```
 
