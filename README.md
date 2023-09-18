@@ -31,7 +31,7 @@
   * [Zookeeper 설치](https://github.com/YHJOONG/TIL/blob/main/kafka/Zookeeper%20%EC%84%A4%EC%B9%98%20%EB%B0%8F%20%ED%99%98%EA%B2%BD.md)
 
 ## OOP
-    
+  * [SOLID-단일 책임 원칙](https://github.com/YHJOONG/TIL/blob/main/oop/oop-solid-principles-srp.md)
 
 ## Redis
   * [레디스 설치(in Windows)](https://github.com/YHJOONG/TIL/blob/main/redis/%EC%84%9C%EB%B2%84%20%EC%84%A4%EC%B9%98%20%EB%B0%8F%20%ED%99%98%EA%B2%BD%20%EA%B5%AC%EC%84%B1.md)
