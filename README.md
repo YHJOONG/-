@@ -49,4 +49,6 @@
 ## Vue
   * [Vuex store의 개념](https://github.com/YHJOONG/TIL/blob/main/vue/VUEX%EC%9D%98%20STORE%EB%9E%80.md)
 
+## Pine Script
+  * [파인 스크립트 개념](https://github.com/YHJOONG/TIL/blob/main/pineScript/concept-of-pine-script.md)
 
