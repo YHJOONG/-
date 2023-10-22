@@ -46,6 +46,7 @@
   * [Quartz 스케줄러](https://github.com/YHJOONG/TIL/blob/main/springboot/Quartz%20%EC%8A%A4%EC%BC%80%EC%A4%84%EB%9F%AC%20%EC%82%AC%EC%9A%A9.md)
   * [String 클래스 종류](https://github.com/YHJOONG/TIL/blob/main/springboot/String%20%ED%81%B4%EB%9E%98%EC%8A%A4.md)
   * [의존성 주입 DI](https://github.com/YHJOONG/TIL/blob/main/springboot/spring-boot-dependency-injection.md)
+  * [Rest API]https://github.com/YHJOONG/TIL/blob/main/springboot/Spring-Boot-Up-and-Running-chapter-3.md)
 ## Vue
   * [Vuex store의 개념](https://github.com/YHJOONG/TIL/blob/main/vue/VUEX%EC%9D%98%20STORE%EB%9E%80.md)
 
