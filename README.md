@@ -50,6 +50,7 @@
   * [String 클래스 종류](https://github.com/YHJOONG/TIL/blob/main/springboot/String%20%ED%81%B4%EB%9E%98%EC%8A%A4.md)
   * [의존성 주입 DI](https://github.com/YHJOONG/TIL/blob/main/springboot/spring-boot-dependency-injection.md)
   * [Rest API](https://github.com/YHJOONG/TIL/blob/main/springboot/Spring-Boot-Up-and-Running-chapter-3.md)
+  * [Equals & HashCode](https://github.com/YHJOONG/TIL/blob/main/springboot/equal-and-hash-code.md)
 ## Vue
   * [Vuex store의 개념](https://github.com/YHJOONG/TIL/blob/main/vue/VUEX%EC%9D%98%20STORE%EB%9E%80.md)
 
