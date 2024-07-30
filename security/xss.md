@@ -15,8 +15,7 @@ Cross-site-Scripting => xss 인 이유? css의 약어를 이미 사용중이라�
   2. 감연된 URL를 서버에 Request 전송
   3. 웹 서버에서 해당 스크립트를 포함한 Response 전송
 
-
-### Stored XSS
+### Stored XSS
   - 사이트 게시판, 댓글 등 스크립트가 서버에 저장되어 실행되는 방식
   - 일반적인 XSS 공격
 
